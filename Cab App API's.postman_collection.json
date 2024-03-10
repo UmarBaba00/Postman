@@ -1,0 +1,1934 @@
+{
+	"info": {
+		"_postman_id": "b47b7048-b88c-40bd-af61-89e9cdb62bcf",
+		"name": "Cab App API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23426277",
+		"_collection_link": "https://winter-capsule-777336.postman.co/workspace/New-Team-Workspace~9df26668-cb34-44e4-9ae6-2252406a8a30/collection/23426277-b47b7048-b88c-40bd-af61-89e9cdb62bcf?action=share&source=collection_link&creator=23426277"
+	},
+	"item": [
+		{
+			"name": "user API's",
+			"item": [
+				{
+					"name": "Get user by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"confirm\": \"12\",\n  \"ride_id\": \"2\",\n  \"type\": \"card\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl1}}/users/33",
+							"host": [
+								"{{baseUrl1}}"
+							],
+							"path": [
+								"users",
+								"33"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user by ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user_id\": \"126\",\n  \"name\" : \"Ahmed Raza\",\n  \"address\" : \"Gujranwala\",\n  \"device_id\" : \"\",\n  \"email\" : \"lalog@gmail.com\"\n//   \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl1}}/users/edit",
+							"host": [
+								"{{baseUrl1}}"
+							],
+							"path": [
+								"users",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\" : \"Umar\",\r\n    \"last_name\" : \"Farooq\" ,\r\n    \"phone_number\" : \"+9230762350\",\r\n    \"email\" : \"abc0@gmail.com\",\r\n    \"password\" : \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl1}}/users/signup_user",
+							"host": [
+								"{{baseUrl1}}"
+							],
+							"path": [
+								"users",
+								"signup_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone_number\" : \"923206036300\",\r\n    \"password\" : \"Lucky@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl1}}/users/login",
+							"host": [
+								"{{baseUrl1}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by iD",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl1}}/users/126/delete_user",
+							"host": [
+								"{{baseUrl1}}"
+							],
+							"path": [
+								"users",
+								"126",
+								"delete_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Extract User by ID\", function () {\r",
+									"    var user = pm.response.json().users; \r",
+									"    var targetBookingId = 1; \r",
+									"    var targetBooking = user.find(users => users.id === targetBookingId); \r",
+									"\r",
+									"    // Log the details of the selected targetBooking in the console\r",
+									"    console.log(\"User Details:\", targetBooking);\r",
+									"\r",
+									"    // Store the targetBooking in the environment for further use\r",
+									"    pm.environment.set(\"targetBooking\", JSON.stringify(targetBooking));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"confirm\": \"12\",\n  \"ride_id\": \"2\",\n  \"type\": \"card\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/users/get_all_users",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"users",
+								"get_all_users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Driver API's",
+			"item": [
+				{
+					"name": "get  Drivers Data by id",
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/driver/33",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"33"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup driver",
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \" Umar\", \n    \"last_name\": \" Farooq\", \n    \"email\": \"abcccdc122@gmail.com\", \n    \"phone_number\" : \"+9230762356122\",\n    \"password\" : \"123\",\n    \"driver\" : \"True\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/signup_driver",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"signup_driver"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login driver",
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n    \"phone_number\": \"+052200319823\", \n    \"password\" : \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/login_driver",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"login_driver"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Driver by ID",
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n//   \"user_id\": \"21\",\n  \"name\" : \"ahmad\",\n  \"address\" : \"rana Bazar Alo chat \",\n  \"device_id\" : \"2342424\",\n  \"email\" : \"lalog@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/26/edit",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"26",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add nic front",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/AlSalaamSQA/Downloads/5_ Signup.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/18/add_nic_front",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"18",
+								"add_nic_front"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nic back pic",
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/AlSalaamSQA/Pictures/Screenshots/Screenshot (1).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/33/add_nic_back",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"33",
+								"add_nic_back"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add License front",
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/AlSalaamSQA/Downloads/5_ Signup.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/18/add_license_front",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"18",
+								"add_license_front"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add lincese back",
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/AlSalaamSQA/Downloads/5_ Signup.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/18/add_license_back",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"18",
+								"add_license_back"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Profile Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/AlSalaamSQA/Downloads/5_ Signup.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/18/add_profile_picture",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"18",
+								"add_profile_picture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add RTA front",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/AlSalaamSQA/Downloads/5_ Signup.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/18/add_rta_card_front",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"18",
+								"add_rta_card_front"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add RTA back",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/AlSalaamSQA/Downloads/5_ Signup.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/18/add_rta_card_back",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"18",
+								"add_rta_card_back"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add mulkia front",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/AlSalaamSQA/Downloads/5_ Signup.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/18/add_mulkia_front",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"18",
+								"add_mulkia_front"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add mulkia back",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/AlSalaamSQA/Downloads/5_ Signup.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/18/add_mulkia_back?",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"18",
+								"add_mulkia_back"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update driver by id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Umar\", \r\n    \"last_name\": \"Farooq\", \r\n    \"email\": \"abcd1234345@gmail.com\",\r\n    \"password\" : \"123\",\r\n    \"driver\" : \"True\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.126.150.6:8080/api/v1/driver/1/edit",
+							"protocol": "http",
+							"host": [
+								"13",
+								"126",
+								"150",
+								"6"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"driver",
+								"1",
+								"edit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deleting driver file data by ID. Like Nic,license etc ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.126.150.6:8080/api/v1/driver/2/delete_driver_data",
+							"protocol": "http",
+							"host": [
+								"13",
+								"126",
+								"150",
+								"6"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"driver",
+								"2",
+								"delete_driver_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Driver by id",
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/26/delete_driver",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"26",
+								"delete_driver"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all Drivers Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Extract Driver by ID\", function () {\r",
+									"    // Parse the response JSON\r",
+									"    var drivers = pm.response.json().drivers; // Access the drivers array\r",
+									"    \r",
+									"    // Define the driver ID you want to fetch\r",
+									"    var targetDriverId = 26; // Replace with the actual driver ID\r",
+									"\r",
+									"    // Find the driver with the specified ID\r",
+									"    var targetDriver = drivers.find(driver => driver.driver_specifics.id === targetDriverId); // Corrected typo in driver_specifics\r",
+									"\r",
+									"    // Assert that the target driver is found\r",
+									"    pm.expect(targetDriver).to.not.be.undefined;\r",
+									"\r",
+									"    // Store the target driver for further use\r",
+									"    pm.environment.set(\"targetDriver\", JSON.stringify(targetDriver));\r",
+									"    console.log(\"Selected Driver:\");\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"// Get the stored target driver from the environment\r",
+									"var targetDriver = JSON.parse(pm.environment.get(\"targetDriver\"));\r",
+									"\r",
+									"// Use the target driver details in the current request\r",
+									"pm.variables.set(\"driverName\", targetDriver.user_specifics.name); // Access the name from user_specifics\r",
+									"console.log(\"Selected Driver:\", targetDriver);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/driver/get_all_drivers",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"driver",
+								"get_all_drivers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addDriverDetails",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image_type",
+									"value": "nic_back",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/AlSalaamSQA/Pictures/Screenshots/Screenshot 2024-01-23 152553.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/driver/upload/33/",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"driver",
+								"upload",
+								"33",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vehicles API's",
+			"item": [
+				{
+					"name": "Add the Details of Vehicle or create Vehicle ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        // \"user_reference\" :64,\r\n        \"license_plate\": \"B119B1190\",\r\n        \"vehicle_vendor\":\"Sakooooter\",\r\n        \"vehicle_model\": \"2014\",\r\n        \"vehicle_type\": \"BMW\",\r\n        \"vehicle_ownership\": \"ALI Cheeema\",\r\n        \"color\": \"BlackUmar\"\r\n      \r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/26/add_vehicle",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"26",
+								"add_vehicle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit/Update The data of vehicle by ID",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"license_plate\": \"Bj097128\",\r\n        \"vehicle_vendor\": \"MARCIDES\",\r\n        \"vehicle_model\": \"Sudu\",\r\n        \"vehicle_type\": \"vagan\",\r\n        \"vehicle_ownership\": \"Sulu\",\r\n        \"color\": \"yellow\",\r\n        \"vehicle_front\": null,\r\n        \"vehicle_back\": null,\r\n        \"vehicle_left\": null,\r\n        \"vehicle_right\": null,\r\n        \"vehicle_interior\": null\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.126.150.6:8080/api/v1/driver/4/edit_vehicle",
+							"protocol": "http",
+							"host": [
+								"13",
+								"126",
+								"150",
+								"6"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"driver",
+								"4",
+								"edit_vehicle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vehicle by ID",
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/driver/2/get_vehicle_data",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"2",
+								"get_vehicle_data"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Vehicle by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.126.150.6:8080/api/v1/driver/delete_vehicle",
+							"protocol": "http",
+							"host": [
+								"13",
+								"126",
+								"150",
+								"6"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"driver",
+								"delete_vehicle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add Vehicle front",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/admin/Pictures/Screenshots/154.PNG"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/driver/36/add_vehicle_front",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"driver",
+								"36",
+								"add_vehicle_front"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all vehicles Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Extract Vehicles by ID\", function () {\r",
+									"    // Parse the response JSON\r",
+									"    var vehicle = pm.response.json().vehicles; // Access the drivers array\r",
+									"    \r",
+									"    // Define the driver ID you want to fetch\r",
+									"    var targetVehicleId = 1; // Replace with the actual driver ID\r",
+									"\r",
+									"    // Find the driver with the specified ID\r",
+									"    var targetVehicle = vehicle.find(vehicles => vehicles.vehicle_specifics.id === targetVehicleId); // Corrected typo in driver_specifics\r",
+									"\r",
+									"    // Assert that the target driver is found\r",
+									"    pm.expect(targetVehicle).to.not.be.undefined;\r",
+									"\r",
+									"    // Store the target driver for further use\r",
+									"    pm.environment.set(\"targetVehicle\", JSON.stringify(targetVehicle));\r",
+									"    console.log(\"Selected Driver:\", targetVehicle);\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"// Get the stored target driver from the environment\r",
+									"var targetVehicle = JSON.parse(pm.environment.get(\"targetVehicle\"));\r",
+									"\r",
+									"// Use the target driver details in the current request\r",
+									"pm.variables.set(\"vehicleName\", targetVehicle.vehicle_specifics.license_plate); // Access the name from user_specifics\r",
+									"console.log(\"Selected Vehicle:\", targetVehicle);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/driver/get_all_vehicles",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"driver",
+								"get_all_vehicles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking API's",
+			"item": [
+				{
+					"name": "Create booking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pickup_time\": \"2024-01-17T12:00:00Z\",\r\n  \"dropoff_time\": \"2024-01-17T14:00:00Z\",\r\n  \"pickup_location\": \"Lahore\",\r\n  \"pickup_coordinates\": {\r\n    \"latitude\": 123.6,\r\n    \"longitude\": 789.12\r\n  },\r\n  \"dropoff_location\": \"Islamabad\",\r\n  \"dropoff_coordinates\": {\r\n    \"latitude\": 345.67,\r\n    \"longitude\": 901.2\r\n  },\r\n  \"distance\": 10.5,\r\n  \"suggested_payments\": 20.2,\r\n  \"status\": \"request\",\r\n  \"user_id\": 33,\r\n  \"vehicle_id\": 12\r\n   \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/create",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept Status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"Accept\",\r\n  \"pickup_time\": \"2024-01-17T12:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/29/accept",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"29",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pickup stuts",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"picked\",\r\n  \"pickup_time\": \"2024-01-17T12:00:00\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/29/pickup_status",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"29",
+								"pickup_status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Drop off Status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"droped\",\r\n  \"dropoff_time\": \"2024-01-17T14:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/29/dropoff_status",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"29",
+								"dropoff_status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "complete Ride",
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"completed\",\r\n  \"dropoff_time\": \"2024-01-17T14:00:00Z\",\r\n  \"received_payment\": 50.0,\r\n  \"payment_via\": \"Credit Card\",\r\n  \"tip\": 10.0,\r\n  \"actual_time\": \"2024-01-17T14:25:00\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/29/complete_status",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"29",
+								"complete_status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancel booking by driver id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\" : \"cancel\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/18/cancel",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"18",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancel booking bu user ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\" : \"cancel\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/33/user_cancel",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"33",
+								"user_cancel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get current booking with user id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Fetch Booking with Status 'Request'\", function () {\r",
+									"    // Parse the response JSON\r",
+									"    var booking = pm.response.json();\r",
+									"\r",
+									"    // Check if the booking has the status \"request\"\r",
+									"    if (booking.status === \"request\") {\r",
+									"        // Log the details of the booking with status \"request\" in the console\r",
+									"        console.log(\"Booking with Status 'Request':\", booking);\r",
+									"\r",
+									"        // Store the booking with status \"request\" in the environment for further use\r",
+									"        pm.environment.set(\"bookingWithRequestStatus\", JSON.stringify(booking));\r",
+									"    } else {\r",
+									"        // Log a message if no booking with status \"request\" is found\r",
+									"        console.log(\"No booking with status 'request' found.\");\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/33/get_user",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"33",
+								"get_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Bookings by driver id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Fetch Scheduled Bookings\", function () {\r",
+									"    // Parse the response JSON\r",
+									"    var bookings = pm.response.json().bookings;\r",
+									"\r",
+									"    // Filter bookings with \"scheduled\" status\r",
+									"    var scheduledBookings = bookings.filter(bookings => bookings.status === \"scheduled\");  // Just change status to cancel & complete to find other bookings\r",
+									"\r",
+									"    // Log the details of scheduled bookings in the console\r",
+									"    console.log(\"Scheduled Bookings:\", scheduledBookings);\r",
+									"\r",
+									"    // Store the scheduled bookings in the environment for further use\r",
+									"    pm.environment.set(\"scheduledBookings\", JSON.stringify(scheduledBookings));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/18/get_all_drivers",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"18",
+								"get_all_drivers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all bookings by user id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Fetch Scheduled Bookings\", function () {\r",
+									"    // Parse the response JSON\r",
+									"    var bookings = pm.response.json().bookings;\r",
+									"\r",
+									"    // Filter bookings with \"scheduled\" status\r",
+									"    var scheduledBookings = bookings.filter(bookings => bookings.status === \"scheduled\");  // Just change status to cancel & complete to find other bookings\r",
+									"\r",
+									"    // Log the details of scheduled bookings in the console\r",
+									"    console.log(\"Scheduled Bookings:\", scheduledBookings);\r",
+									"\r",
+									"    // Store the scheduled bookings in the environment for further use\r",
+									"    pm.environment.set(\"scheduledBookings\", JSON.stringify(scheduledBookings));\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/33/get_all_users",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"33",
+								"get_all_users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get curreent Driver booking ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Fetch Booking with Status 'Request'\", function () {\r",
+									"    // Parse the response JSON\r",
+									"    var booking = pm.response.json();\r",
+									"\r",
+									"    // Check if the booking has the status \"request\"\r",
+									"    if (booking.status === \"request\") {\r",
+									"        // Log the details of the booking with status \"request\" in the console\r",
+									"        console.log(\"Booking with Status 'Request':\", booking);\r",
+									"\r",
+									"        // Store the booking with status \"request\" in the environment for further use\r",
+									"        pm.environment.set(\"bookingWithRequestStatus\", JSON.stringify(booking));\r",
+									"    } else {\r",
+									"        // Log a message if no booking with status \"request\" is found\r",
+									"        console.log(\"No booking with status 'request' found.\");\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/18/get_driver",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"18",
+								"get_driver"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Schedule Booking & Events",
+			"item": [
+				{
+					"name": "enquiry form",
+					"request": {
+						"auth": {
+							"type": "inherit"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user_id\": 33,\r\n  \"vehicle_id\": 12,\r\n  \"pickup_coordinates\": {\r\n    \"latitude\": \"12.3456\",\r\n    \"longitude\": \"78.9012\"\r\n  },\r\n  \"dropoff_coordinates\": {\r\n    \"latitude\": \"34.5678\",\r\n    \"longitude\": \"90.1234\"\r\n  },\r\n  \"pickup_location\": \"Pickup Location\",\r\n  \"dropoff_location\": \"Dropoff Location\",\r\n  \"status\": \"PENDING\",\r\n  \"event_type\": \"CITY_TOUR\",\r\n  \"schedule_date\": \"2024-01-21\",\r\n  \"schedule_time\": \"07:30:00\",\r\n  \"bags\": 2,\r\n  \"number_of_vehicles\": 3,\r\n  \"number_of_passenger\": 4\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/event_inquiry",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"event_inquiry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schdule Booking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pickup_location\" : \"Gujrat\",\r\n    \"dropoff_location\" : \"Sialkot\",\r\n  \"user_id\": 33,\r\n  \"vehicle_id\": 12,\r\n  \"guest_name\": \"Hafiz Usman\",\r\n  \"guest_phone_number\": \"12345678901\",\r\n  \"schedule_date\": \"2024-01-30\",\r\n  \"schedule_time\": \"14:30:00\",\r\n  \"description\": \"mere yaar nu laabo jithy mil jaye goli mar deo\",\r\n  \"number_of_passenger\": 100,\r\n  \"status\": \"PENDING\",\r\n  \"pickup_coordinates\": {\r\n    \"latitude\": \"12.3456\",\r\n    \"longitude\": \"78.9101\"\r\n  },\r\n  \"dropoff_coordinates\": {\r\n    \"latitude\": \"34.5678\",\r\n    \"longitude\": \"-91.2345\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/schedule",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Airport Booking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user_id\": 33,\r\n  \"vehicle_id\": 12,\r\n  \"pickup_coordinates\": {\r\n    \"latitude\": 37.7749,\r\n    \"longitude\": -122.4194\r\n  },\r\n  \"dropoff_coordinates\": {\r\n    \"latitude\": 37.8716,\r\n    \"longitude\": -122.2727\r\n  },\r\n  \"pickup_location\": \"Dubai International Airport\",\r\n  \"dropoff_location\": \"Pakistan\",\r\n  \"status\": \"PENDING\",\r\n  \"event_type\": \"AIRPORT\",\r\n  \"flight_number\": \"ABC1230\",\r\n  \"bags\": 2,\r\n  \"airport_name\": \"Dubai International Airport\",\r\n  \"airport_terminal\": \"Terminal 3\",\r\n  \"departure_date\": \"2024-01-21\",\r\n  \"departure_time\": \"14:30:00\",\r\n  \"number_of_vehicles\" :5\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/airport",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"airport"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dubai City Event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user_id\": 33,\r\n  \"vehicle_id\": 12,\r\n  \"pickup_coordinates\": {\r\n    \"latitude\": \"12.3456\",\r\n    \"longitude\": \"78.9012\"\r\n  },\r\n  \"dropoff_coordinates\": {\r\n    \"latitude\": \"34.5678\",\r\n    \"longitude\": \"90.1234\"\r\n  },\r\n  \"pickup_location\": \"Lahore\",\r\n  \"dropoff_location\": \"Islamabad\",\r\n  \"status\": \"scheduled\",\r\n  \"event_type\": \"CITY_TOUR\",\r\n  \"tour_date\": \"2024-01-15\",\r\n  \"tour_time\": \"15:00:00\",\r\n  \"bags\": 2,\r\n  \"full_day\": true,\r\n  \"half_day\": false,\r\n  \"number_of_vehicles\": 3\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/dubai_tour",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"dubai_tour"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Wedding Events API",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user_id\": 33,\r\n  \"schedule_date\": \"2024-01-15\",\r\n  \"schedule_time\": \"12:30:00\",\r\n  \"number_of_passenger\": 20,\r\n  \"status\": \"PENDING\",\r\n  \"event_type\" : \"WEDDING\",\r\n  \"pickup_location\": \"Gujranwla\",\r\n  \"dropoff_location\": \"Rawat\",\r\n  \"pickup_coordinates\": {\r\n    \"latitude\": \"40.7128\",\r\n    \"longitude\": \"-74.0060\"\r\n  },\r\n  \"dropoff_coordinates\": {\r\n    \"latitude\": \"41.8781\",\r\n    \"longitude\": \"-87.6298\"\r\n  },\r\n \"vehicles\": [\r\n    {\"vehicle_id\" :1\r\n     , \"quantity\":2},\r\n    {\"vehicle_id\" :2\r\n     , \"quantity\":5}\r\n\r\n  ]\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/wedding_event",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"wedding_event"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "submit complain",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Raja Kayani\",\r\n  \"phone_number\": \"+9230762350\",\r\n  \"details\": \"mere cigrate de dabi chuki gai\",\r\n  \"shipping_address\": \"choor bazar acho katli colony gujranwala\",\r\n  \"complaint_type\": \"Product Issue\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/rider/33/complains/add",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"rider",
+								"33",
+								"complains",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBookingById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/68/getBookingById",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"68",
+								"getBookingById"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllBookings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Extract Booking by ID\", function () {\r",
+									"    // Parse the response JSON\r",
+									"    var booking = pm.response.json().bookings; // Access the bookings array\r",
+									"    \r",
+									"    // Define the booking ID you want to fetch\r",
+									"    var targetBookingId = 6; // Replace with the actual driver ID\r",
+									"\r",
+									"    // Find the booking with the specified ID\r",
+									"    var targetBooking = booking.find(bookings => bookings.booking_details.id === targetBookingId); // Corrected typo in booking_details\r",
+									"\r",
+									"    // Assert that the target booking is found\r",
+									"    pm.expect(targetBooking).to.not.be.undefined;\r",
+									"\r",
+									"    // Store the target booking for further use\r",
+									"    pm.environment.set(\"targetBooking\", JSON.stringify(targetBooking));\r",
+									"    console.log(\"Selected Vehicle:\", targetBooking);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/getAllBookings",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"getAllBookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllScheduleBookings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Extract Booking by ID\", function () {\r",
+									"    var booking = pm.response.json().bookings; \r",
+									"    var targetBookingId = 37; \r",
+									"    var targetBooking = booking.find(bookings => bookings.booking_details.id === targetBookingId); \r",
+									"\r",
+									"    // Log the details of the selected targetBooking in the console\r",
+									"    console.log(\"Selected1 Booking:\", targetBooking);\r",
+									"\r",
+									"    // Store the targetBooking in the environment for further use\r",
+									"    pm.environment.set(\"targetBooking\", JSON.stringify(targetBooking));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/getAllScheduleBookings",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"getAllScheduleBookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getScheduleBookingById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://13.201.95.206:8000/api/v1/booking/37/getScheduleBookingById",
+							"protocol": "http",
+							"host": [
+								"13",
+								"201",
+								"95",
+								"206"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"booking",
+								"37",
+								"getScheduleBookingById"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://13.126.150.6:8080/api/v1/"
+		}
+	]
+}
